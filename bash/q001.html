@@ -1,0 +1,18 @@
+<h1 id="bash-questions">Bash questions</h1>
+<ol type="1">
+<li>A case where the content of single quotes is interpolated:</li>
+</ol>
+<pre><code>declare -A MAP=([foo]=bar)
+K=foo
+echo ${MAP[$K]}
+#bar
+unset MAP[&#39;$K&#39;]
+echo ${MAP[$K]}
+#</code></pre>
+<p>Note: it works only with unset</p>
+<ol start="2" type="1">
+<li>ANSI-C quotes <code>$''</code> and Locale translation quotes <code>$""</code></li>
+</ol>
+<p><code>$'\tSOMETEXT'</code> renders <code>\t</code> into a tab space before <code>SOMETEXT</code></p>
+<p><code>$"message"</code> can translate it into the current locale by <code>gettext</code></p>
+<p>Note: curious example: <code>"\'"</code> -&gt; <code>\'</code>; <code>$'\''</code> -&gt; <code>'</code>; while <code>'\''</code> is invalid</p>
